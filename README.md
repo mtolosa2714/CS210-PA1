@@ -36,12 +36,17 @@ There is **no single required way** to construct the board. The requirement is t
 
 ## How to Build and Run
 ### Build
-(Write your build instructions here.)
+- Create repository
+- Open the project in CLion
+- Build the IDE
+- Connect repository
+
 Example:
 - `g++ -std=c++17 monopoly_board_S26_template.cpp -o monopoly_board`
 
 ### Run
 - `./monopoly_board`
+- Run the program in CLion
 
 ---
 

@@ -29,14 +29,14 @@ Each entry may be one of the following:
 ---
 
 ### Entry 1
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2020-04-13
+**Entry Type:** Bug Fix
+**Task worked on:** Connecting CLion to GitHub Repository
+**Issue or decision:** I could not push my project to GitHub. It kept rejecting with "non-fast-forward" errors.
+**Error message / symptom (if applicable):**  “Pulling is not possible because you have unmerged files.”
+**What I tried:**  I kept trying to push, but it kept rejecting. So I tried pulling from the repository but it made more errors about branches and merges.
+**Fix / resolution (or final decision):**  The problem was in the README file where I cad to manually edit the marker and keep the correct version of README
+**Commit(s):**  Add project files and gitignore
 
 ---
 
