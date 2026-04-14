@@ -43,6 +43,9 @@ public:
         /* TODO: Define print here */
         // Example style:
         // cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
+        void print() {
+            cout << propertyName << ", " < propertyColor << ", $" < value << ", Rent:" < rent << endl;
+        }
     }
 };
 
@@ -108,8 +111,21 @@ public:
         // - If empty list: head=tail=player=new, new->next=head
         // - Else: tail->next=new, tail=new, tail->next=head
         // - nodeCount++
-        cout << "addSpace unwritten" << endl;
-        return false;
+        if (nodeCount == MAX_SPACES) {
+            return false;
+        }
+        Node<T>* newNode = new Node<T>(value);
+        if (headNode == nullptr) {
+            headNode = newNode;
+            tailNode = newNode;
+            playerNode = newNode;
+            newNode->nextNode = headNode;
+        } else {
+            tailNode->nextNode = newNode;
+            tailNode = newNode;
+        }
+        nodeCount++;
+        return true;
     }
 
     // -------------------------------
