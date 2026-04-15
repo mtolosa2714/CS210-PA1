@@ -53,14 +53,14 @@ Each entry may be one of the following:
 ---
 
 ### Entry 3
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-04-14 
+**Entry Type:** Bug Fix
+**Task worked on:**  Debugging the addSpace and addMany growth
+**Issue or decision:**  I wrote the code assuming that it would be able to link multiple nodes in the circular list, but after creating some tests, I realized it didn't traverse properly.
+**Error message / symptom (if applicable):**  When I manually traversed the list, it kept printing "GO" and wasn't going through the nodes.
+**What I tried:**  I wrote a test that went through each node at a time, which showed that it was repeating "GO" instead of actually moving through.
+**Fix / resolution (or final decision):**  After some trial and error, I realized it was a simple mistake. All I had to do was add an else block, which let it move through all the nodes without looping.
+**Commit(s):**  From commit 5 to commit 6
 
 ---
 

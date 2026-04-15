@@ -141,6 +141,9 @@ public:
             if (addSpace(values[i])) {
                 addedCount++;
             }
+            else {
+                break;
+            }
         }
         return addedCount;
     }
