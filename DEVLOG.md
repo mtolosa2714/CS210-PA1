@@ -65,14 +65,14 @@ Each entry may be one of the following:
 ---
 
 ### Entry 4
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:**   2026-04-14
+**Entry Type:** Bug Fix 
+**Task worked on:**  printBoardOnce() not working
+**Issue or decision:**  After coding the printBoardOnce(), I tried to use a while loop to traverse through the circular linked list
+**Error message / symptom (if applicable):**  The function wouldn't print anything/had no output.
+**What I tried:**  I wrote out what the function was doing with the loop and realized that temp was already set to headNode, so the while loop was never triggered.
+**Fix / resolution (or final decision):**  To fix this, I added a code right before that manually printed the head and then continued to the while loop till the circular linked list looped back to the headnode.
+**Commit(s):**  From commit 8
 
 ---
 

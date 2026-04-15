@@ -109,20 +109,27 @@ public:
         // - If empty list: head=tail=player=new, new->next=head
         // - Else: tail->next=new, tail=new, tail->next=head
         // - nodeCount++
+
+        //Check if the list is full
         if (nodeCount == MAX_SPACES) {
             return false;
         }
+
         Node<T>* newNode = new Node<T>(value);
+
+        //If the list is empty
         if (headNode == nullptr) {
             headNode = newNode;
             tailNode = newNode;
             playerNode = newNode;
             newNode->nextNode = headNode;
-        } else {
+        } else { //adds the new node to the end
             tailNode->nextNode = newNode;
             tailNode = newNode;
             tailNode -> nextNode = headNode;
         }
+
+        //increase space count
         nodeCount++;
         return true;
     }
@@ -137,11 +144,13 @@ public:
         // - Return number successfully added
         // - Do not corrupt pointers if capacity is exceeded
         int addedCount = 0;
+
+        //add each space at a time
         for (int i = 0; i < values.size(); i++) {
             if (addSpace(values[i])) {
                 addedCount++;
             }
-            else {
+            else { //stops when full
                 break;
             }
         }
@@ -158,10 +167,15 @@ public:
         // - Detect and track passing GO:
         //   increment passGoCount when a move crosses from tail back to head
         // - Must handle empty list safely
+
+        //checks for empty board
         if (playerNode == nullptr) {
             return;
         }
+
+        //moves player one node at a time
         for (int i = 0; i < steps; i++) {
+            //at tail, move passes GO
             if (playerNode == tailNode) {
                 passGoCount++;
             }
@@ -170,7 +184,7 @@ public:
     }
 
     int getPassGoCount() {
-        return passGoCount;
+        return passGoCount; //number of time player passes GO
     }
 
     // -------------------------------
@@ -182,14 +196,21 @@ public:
         // - Must not infinite loop
         // - Must handle empty list
         // - Output must be deterministic and readable
+
+       //empty board
         if (playerNode == nullptr) {
             cout << "Empty board." << endl;
             return;
         }
+
+        //0 or negative
         if (count <= 0) {
             return;
         }
+
         Node<T>* temp = playerNode;
+
+        //print spaces count from player
         for (int i = 0; i < count; i++) {
             cout << "[" << i << "]";
             temp -> data.print();
@@ -201,7 +222,25 @@ public:
     void printBoardOnce() {
         // TODO:
         // - Traverse exactly one full cycle and print each node
-        cout << "printBoardOnce unwritten" << endl;
+
+        //empty board
+        if (headNode == nullptr) {
+            cout << "Empty board." << endl;
+            return;
+        }
+
+        Node<T>* temp = headNode;
+
+        //print the head
+        temp -> data.print();
+        temp = temp -> nextNode;
+
+        //print the rest
+        while (temp != headNode) {
+            temp -> data.print();
+            temp = temp -> nextNode;
+        }
+
     }
 
     // -------------------------------
@@ -296,23 +335,7 @@ int main() {
     //
     // NOTE: This starter calls addSpace once to show the intended API,
     // but your final submission should build a meaningful board.
-    //board.addSpace(MonopolySpace("GO", "None", 0, 0));
-
-    // TESTER FOR MOVEPLAYER AND PRINTFROMPLAYER
-    vector<MonopolySpace> spaces;
-    spaces.push_back(MonopolySpace("GO", "None", 0, 0));
-    spaces.push_back(MonopolySpace("A", "Brown", 60, 2));
-    spaces.push_back(MonopolySpace("B", "Brown", 60, 4));
-    spaces.push_back(MonopolySpace("C", "Blue", 100, 6));
-
-    board.addMany(spaces);
-
-    cout << "From start:" << endl;
-    board.printFromPlayer(5);
-
-    cout << "\nMove 2:" << endl;
-    board.movePlayer(2);
-    board.printFromPlayer(5);
+    board.addSpace(MonopolySpace("GO", "None", 0, 0));
 
     // -------------------------------
     // Playable Traversal Loop
