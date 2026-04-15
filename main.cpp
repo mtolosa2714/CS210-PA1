@@ -158,7 +158,15 @@ public:
         // - Detect and track passing GO:
         //   increment passGoCount when a move crosses from tail back to head
         // - Must handle empty list safely
-        cout << "movePlayer unwritten" << endl;
+        if (playerNode == nullptr) {
+            return;
+        }
+        for (int i = 0; i < steps; i++) {
+            if (playerNode == tailNode) {
+                passGoCount++;
+            }
+            playerNode = playerNode->nextNode;
+        }
     }
 
     int getPassGoCount() {
@@ -174,7 +182,19 @@ public:
         // - Must not infinite loop
         // - Must handle empty list
         // - Output must be deterministic and readable
-        cout << "printFromPlayer unwritten" << endl;
+        if (playerNode == nullptr) {
+            cout << "Empty board." << endl;
+            return;
+        }
+        if (count <= 0) {
+            return;
+        }
+        Node<T>* temp = playerNode;
+        for (int i = 0; i < count; i++) {
+            cout << "[" << i << "]";
+            temp -> data.print();
+            temp = temp -> nextNode;
+        }
     }
 
     // Optional helper: print full board once (one full cycle)
@@ -278,13 +298,21 @@ int main() {
     // but your final submission should build a meaningful board.
     //board.addSpace(MonopolySpace("GO", "None", 0, 0));
 
-    // TEST THE ADDMANY AND ADDSPACE FUNCTION
+    // TESTER FOR MOVEPLAYER AND PRINTFROMPLAYER
     vector<MonopolySpace> spaces;
     spaces.push_back(MonopolySpace("GO", "None", 0, 0));
-    spaces.push_back(MonopolySpace("A", "Brown", 50, 3));
-    spaces.push_back(MonopolySpace("B", "Brown", 50, 4));
-    int added = board.addMany(spaces);
-    cout << added << " spaces added" << endl;
+    spaces.push_back(MonopolySpace("A", "Brown", 60, 2));
+    spaces.push_back(MonopolySpace("B", "Brown", 60, 4));
+    spaces.push_back(MonopolySpace("C", "Blue", 100, 6));
+
+    board.addMany(spaces);
+
+    cout << "From start:" << endl;
+    board.printFromPlayer(5);
+
+    cout << "\nMove 2:" << endl;
+    board.movePlayer(2);
+    board.printFromPlayer(5);
 
     // -------------------------------
     // Playable Traversal Loop
