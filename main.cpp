@@ -123,6 +123,7 @@ public:
         } else {
             tailNode->nextNode = newNode;
             tailNode = newNode;
+            tailNode -> nextNode = headNode;
         }
         nodeCount++;
         return true;

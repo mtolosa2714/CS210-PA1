@@ -41,14 +41,14 @@ Each entry may be one of the following:
 ---
 
 ### Entry 2
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-04-14
+**Entry Type:** Edge Case  
+**Task worked on:**  Creating and testing the addSpace linking
+**Issue or decision:**  After writing the code for addSpace(), I used basic tests to check if the list was working properly/circularly
+**Error message / symptom (if applicable):**  The code didn't crash, but I wrote a small test to make sure the tail node pointed back to the head node.
+**What I tried:**  I added debugging print statements to check if the list was circular, which showed that I did not have the tail point to the head
+**Fix / resolution (or final decision):**  Since the tests proved that the circular list was not working properly, I went back and added the line tailNode -> nextNode == headNode, which I accidentally forgot.
+**Commit(s):**  From commits 3 to 4
 
 ---
 
