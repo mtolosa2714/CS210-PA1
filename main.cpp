@@ -43,9 +43,7 @@ public:
         /* TODO: Define print here */
         // Example style:
         // cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
-        void print() {
-            cout << propertyName << ", " < propertyColor << ", $" < value << ", Rent:" < rent << endl;
-        }
+        cout << propertyName << ", " << propertyColor << ", $" << value << ", Rent:" << rent << endl;
     }
 };
 
@@ -138,8 +136,13 @@ public:
         // - Stop exactly when you reach MAX_SPACES
         // - Return number successfully added
         // - Do not corrupt pointers if capacity is exceeded
-        cout << "addMany unwritten" << endl;
-        return 0;
+        int addedCount = 0;
+        for (int i = 0; i < values.size(); i++) {
+            if (addSpace(values[i])) {
+                addedCount++;
+            }
+        }
+        return addedCount;
     }
 
     // -------------------------------
@@ -270,7 +273,15 @@ int main() {
     //
     // NOTE: This starter calls addSpace once to show the intended API,
     // but your final submission should build a meaningful board.
-    board.addSpace(MonopolySpace("GO", "None", 0, 0));
+    //board.addSpace(MonopolySpace("GO", "None", 0, 0));
+
+    // TEST THE ADDMANY AND ADDSPACE FUNCTION
+    vector<MonopolySpace> spaces;
+    spaces.push_back(MonopolySpace("GO", "None", 0, 0));
+    spaces.push_back(MonopolySpace("A", "Brown", 50, 3));
+    spaces.push_back(MonopolySpace("B", "Brown", 50, 4));
+    int added = board.addMany(spaces);
+    cout << added << " spaces added" << endl;
 
     // -------------------------------
     // Playable Traversal Loop
