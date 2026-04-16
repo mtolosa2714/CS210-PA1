@@ -72,19 +72,19 @@ Each entry may be one of the following:
 **Error message / symptom (if applicable):**  The function wouldn't print anything/had no output.
 **What I tried:**  I wrote out what the function was doing with the loop and realized that temp was already set to headNode, so the while loop was never triggered.
 **Fix / resolution (or final decision):**  To fix this, I added a code right before that manually printed the head and then continued to the while loop till the circular linked list looped back to the headnode.
-**Commit(s):**  From commit 8
+**Commit(s):**  Commit 8
 
 ---
 
 ### Entry 5
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-04-15  
+**Entry Type:** Bug Fix
+**Task worked on:**  Creating the clear() function
+**Issue or decision:**  When I coded the clear() function, I deleted all the nodes in the circular linked list using a while loop
+**Error message / symptom (if applicable):**  The program ended up looping infinitely because it never satisfied the while loop condition
+**What I tried:**  I looked over my code for the loop that deletes the nodes and realized that since the list was still circular, the next node was never null.
+**Fix / resolution (or final decision):**  Before the loop, I changed the circular linked list to a normal linked list, which meant that the while loop would meet the condition and wouldn't loop infinitely.
+**Commit(s):**  Commit 9
 
 ---
 

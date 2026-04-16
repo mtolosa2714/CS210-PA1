@@ -304,7 +304,31 @@ public:
         // - Safely delete all nodes
         // - Tip: if tailNode exists, break the cycle first: tailNode->nextNode = nullptr
         // - Then delete like a normal singly linked list
-        cout << "clear unwritten" << endl;
+
+        //empty list
+        if (headNode == nullptr) {
+            return;
+        }
+
+        //convert to normal linked list
+        tailNode -> nextNode = nullptr;
+
+        Node<T>* current = headNode;
+        Node<T>* nextNode = nullptr;
+
+        //delete the nodes
+        while (current != nullptr) {
+            nextNode = current -> nextNode;
+            delete current;
+            current = nextNode;
+        }
+
+        //reset everything
+        headNode = nullptr;
+        tailNode = nullptr;
+        playerNode = nullptr;
+        nodeCount = 0;
+        passGoCount = 0;
     }
 };
 
