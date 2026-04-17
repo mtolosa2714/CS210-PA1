@@ -212,7 +212,7 @@ public:
 
         //print spaces count from player
         for (int i = 0; i < count; i++) {
-            cout << "[" << i << "]";
+            cout << "Index " << i << " | ";
             temp -> data.print();
             temp = temp -> nextNode;
         }
@@ -256,8 +256,59 @@ public:
         // - Maintain circular link tail->next=head
         // - If playerNode points to deleted node, move playerNode to a safe node
         // - nodeCount--
-        cout << "removeByName unwritten" << endl;
-        return false;
+
+        //empty list
+        if (headNode == nullptr) {
+            return false;
+        }
+
+        //one node
+        if (headNode == tailNode) {
+            if (headNode -> data.propertyName == name) {
+                delete headNode;
+                headNode = nullptr;
+                tailNode = nullptr;
+                playerNode = nullptr;
+                nodeCount--;
+                return true;
+            }
+            return false;
+        }
+
+        //head
+        if (headNode -> data.propertyName == name) {
+            Node<T>* old = headNode;
+            headNode = headNode -> nextNode;
+            tailNode -> nextNode = headNode;
+            if (playerNode == old) {
+                playerNode = headNode;
+            }
+            delete old;
+            nodeCount--;
+            return true;
+        }
+
+        //after head
+        Node<T>* prev = headNode;
+        Node<T>* curr = headNode -> nextNode;
+
+        while (curr != headNode) {
+            if (curr -> data.propertyName == name) {
+                prev -> nextNode = curr -> nextNode;
+                if (curr == tailNode) {
+                    tailNode = prev; //if tail
+                }
+                if (playerNode == curr) {
+                    playerNode = curr -> nextNode; //if player
+                }
+                delete curr;
+                nodeCount--;
+                return true;
+            }
+            prev = curr;
+            curr = curr -> nextNode;
+        }
+        return false; //does not exist
     }
 
     // -------------------------------
@@ -268,21 +319,30 @@ public:
         // - Traverse ring exactly once
         // - Collect matching names in vector<string>
         // - Return matches
-        cout << "findByColor unwritten" << endl;
         vector<string> matches;
-        return matches;
-    }
 
-    // -------------------------------
-    // Advanced Option B (Level 2): Mirror the Board (Circular Reversal)
-    // -------------------------------
-    void mirrorBoard() {
-        // TODO:
-        // - Reverse the direction of the circular list by reversing next pointers
-        // - Preserve circular structure
-        // - Correctly handle empty list and single-node list
-        // - Player cursor must remain on the same logical space after reversal
-        cout << "mirrorBoard unwritten" << endl;
+        //empty board
+        if (headNode == nullptr) {
+            return matches;
+        }
+
+        Node<T>* temp = headNode;
+
+        //check the headNode
+        if (temp -> data.propertyColor ==  color) {
+            matches.push_back(temp -> data.propertyName);
+        }
+        temp = temp -> nextNode;
+
+        //check the rest of the list
+        while (temp != headNode) {
+            if (temp -> data.propertyColor == color) {
+                matches.push_back(temp -> data.propertyName);
+            }
+            temp = temp -> nextNode;
+        }
+
+        return matches;
     }
 
     // -------------------------------
@@ -359,7 +419,29 @@ int main() {
     //
     // NOTE: This starter calls addSpace once to show the intended API,
     // but your final submission should build a meaningful board.
-    board.addSpace(MonopolySpace("GO", "None", 0, 0));
+
+    vector<MonopolySpace> spaces;
+    spaces.push_back(MonopolySpace("GO", "None", 0, 0));
+    spaces.push_back(MonopolySpace("Tenocha", "Brown", 60, 2));
+    spaces.push_back(MonopolySpace("King's Park", "Brown", 60, 4));
+    spaces.push_back(MonopolySpace("Kona Beach Walk", "Light Blue", 100, 6));
+    spaces.push_back(MonopolySpace("Maleina Lane", "Light Blue", 100, 6));
+    spaces.push_back(MonopolySpace("Mikaela Market", "Pink", 140, 10));
+    spaces.push_back(MonopolySpace("Shanelle Shore", "Pink", 140, 10));
+    spaces.push_back(MonopolySpace("RJ Road", "Orange", 180, 14));
+    spaces.push_back(MonopolySpace("Filipino Food Stop", "Red", 220, 18));
+    spaces.push_back(MonopolySpace("SDSU", "Red", 220, 18));
+    spaces.push_back(MonopolySpace("McDonald's", "Yellow", 260, 22));
+    spaces.push_back(MonopolySpace("Afters Ice  Cream", "Yellow", 260, 22));
+    spaces.push_back(MonopolySpace("Seal Beach", "Green", 300, 26));
+    spaces.push_back(MonopolySpace("Eureka!", "Green", 300, 26));
+    spaces.push_back(MonopolySpace("Aztec Corner", "Blue", 350, 35));
+
+    int added = board.addMany(spaces);
+
+    cout << "Board created with " << added << " spaces." << endl;
+    cout << "Starting board:" << endl;
+    board.printBoardOnce();
 
     // -------------------------------
     // Playable Traversal Loop
@@ -385,6 +467,22 @@ int main() {
     //
     // Option B example:
     // board.mirrorBoard();
+
+    //findByColor()
+    cout << "\nBrown spaces:" << endl;
+    vector<string> brownProps = board.findByColor("Brown");
+
+    for (int i = 0; i < brownProps.size(); i++) {
+        cout << brownProps[i] << endl;
+    }
+
+    //removeByName
+    cout << "\nRemove 'Eureka!'" << endl;
+    board.removeByName("Eureka!");
+
+    //print board to check
+    cout << "\nBoard after removing Eureka:" << endl;
+    board.printBoardOnce();
 
     return 0;
 }

@@ -29,7 +29,7 @@ Each entry may be one of the following:
 ---
 
 ### Entry 1
-**Date:** 2020-04-13
+**Date:** 2026-04-13
 **Entry Type:** Bug Fix
 **Task worked on:** Connecting CLion to GitHub Repository
 **Issue or decision:** I could not push my project to GitHub. It kept rejecting with "non-fast-forward" errors.
@@ -89,11 +89,11 @@ Each entry may be one of the following:
 ---
 
 ### Entry 6
-**Date:** YYYY-MM-DD  
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision  
-**Task worked on:**  
-**Issue or decision:**  
-**Error message / symptom (if applicable):**  
-**What I tried:**  
-**Fix / resolution (or final decision):**  
-**Commit(s):**  
+**Date:** 2026-04-15   
+**Entry Type:** Edge Case 
+**Task worked on:**  Testing removeByName() in the circular linked list
+**Issue or decision:**  I checked if removeByName() handled the required edge cases, specifically deleting the head and tail node.
+**Error message / symptom (if applicable):**  There were no errors, but I made sure to test because deleting nodes in circular linked lists can break the loop accidentally
+**What I tried:**  I coded a small test board and tried removing nodes. I tried deleting the head node, the tail node, a random node in the middle, and a node that didn't exist. I printed the board to make sure the nodes were still correct.
+**Fix / resolution (or final decision):**  Testing the code confirmed that all three of the pointers had to be set to null after they were deleted and also confirmed that each edge case needed to be handles individually
+**Commit(s):**  Commit 10
